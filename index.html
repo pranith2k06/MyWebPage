@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pranith's Profile</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+  <style>
+    :root {
+      --bg-color: #1E90FF;
+      --card-bg: #ffffff;
+      --text-color: #1a1a1a;
+      --link-bg: #eaeaea;
+      --accent: #1E90FF;
+      --accent-hover: #1E90FF;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      --transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    [data-theme="dark"] {
+      --bg-color: #000000;
+      --card-bg: #1b1e27;
+      --text-color: #e0e0e0;
+      --link-bg: #2a2f3a;
+      --accent: #1E90FF;
+      --accent-hover: #1E90FF;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+      font-family: "Poppins", sans-serif;
+      color: var(--text-color);
+      transition: var(--transition);
+    }
+
+    .card {
+      background: var(--card-bg);
+      padding: 40px 30px;
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      max-width: 460px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      animation: fadeInUp 0.7s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .top-buttons {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      display: flex;
+      gap: 10px;
+    }
+
+    .icon-btn {
+      background: var(--link-bg);
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s ease;
+    }
+
+    .icon-btn img {
+      width: 20px;
+      height: 20px;
+      transition: filter 0.4s ease;
+    }
+
+    [data-theme="dark"] .icon-btn img {
+      filter: brightness(0) invert(1);
+    }
+
+    .icon-btn.spinning {
+      animation: spin 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .icon-btn:active:not(.spinning) {
+      transform: scale(0.95);
+      transition: transform 0.1s ease;
+    }
+
+    .profile-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin: 0 auto 1.2rem;
+      display: block;
+      object-fit: cover;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      border: 3px solid var(--accent);
+      transition: var(--transition);
+    }
+
+    .card:hover .profile-img {
+      transform: scale(1.05);
+    }
+
+    .name {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--text-color);
+      margin-bottom: 0.4rem;
+      line-height: 1.2;
+    }
+
+    .desc {
+      font-size: 1rem;
+      color: var(--text-color);
+      opacity: 0.85;
+      margin-bottom: 1.5rem;
+      padding: 0 10px;
+      line-height: 1.5;
+    }
+
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 20px;
+      border: 2px solid var(--accent);
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--text-color);
+      text-decoration: none;
+      background: var(--link-bg);
+      border-radius: 30px;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .links a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--accent);
+      z-index: -1;
+      border-radius: 16px;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.4s ease;
+    }
+
+    .links a:hover {
+      color: white;
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 6px 16px rgba(77, 163, 255, 0.3);
+    }
+
+    .links a:hover::before {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    .links a i {
+      font-size: 1.1rem;
+      min-width: 20px;
+      text-align: center;
+    }
+
+    footer {
+      font-size: 0.85rem;
+      color: var(--text-color);
+      opacity: 0.7;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 500px) {
+      .card {
+        padding: 30px 20px;
+        border-radius: 20px;
+      }
+      .name {
+        font-size: 1.4rem;
+      }
+      .desc {
+        font-size: 0.95rem;
+        padding: 0 8px;
+      }
+      .links a {
+        padding: 12px 16px;
+        font-size: 0.95rem;
+        gap: 8px;
+      }
+      .top-buttons {
+        top: 16px;
+        right: 16px;
+      }
+      .icon-btn {
+        width: 40px;
+        height: 40px;
+      }
+      .profile-img {
+        width: 100px;
+        height: 100px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .name {
+        font-size: 1.3rem;
+      }
+      .links a {
+        padding: 11px 14px;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="card">
+    <div class="top-buttons">
+      <button class="icon-btn" id="darkToggle" title="Toggle Dark Mode">
+        <img src="dark.png" alt="Dark Mode Icon" id="darkIcon">
+      </button>
+    </div>
+
+    <img src="profile.jpg" alt="Profile" class="profile-img">
+    <h1 class="name">Pranith Kandagatla</h1>
+    <p class="desc">🎓 BTech Student @ CVR College of Engineering 🏫</p>
+
+    <div class="links">
+      <a href="https://www.instagram.com/pranith._.k/" target="_blank">
+        <i class="fa-brands fa-instagram"></i>
+        <span>Instagram</span>
+      </a>
+      <a href="https://x.com/Pranith2k06" target="_blank">
+        <i class="fa-brands fa-x-twitter"></i>
+        <span>X</span>
+      </a>
+      <a href="https://www.threads.net/@pranith._.k" target="_blank">
+        <i class="fa-brands fa-threads"></i>
+        <span>Threads</span>
+      </a>
+      <a href="https://github.com/pranith2k06" target="_blank">
+        <i class="fa-brands fa-github"></i>
+        <span>GitHub</span>
+      </a>
+      <a href="https://tinyurl.com/linkedinpranithk" target="_blank">
+        <i class="fa-brands fa-linkedin"></i>
+        <span>LinkedIn</span>
+      </a>
+      <a href="https://notepad.pw/programsinc" target="_blank">
+        <i class="fa-solid fa-code"></i>
+        <span>.c</span>
+      </a>
+      <a href="https://notepad.pw/javaprograms" target="_blank">
+        <i class="fa-solid fa-terminal"></i>
+        <span>.java</span>
+      </a>
+    </div>
+
+    <footer>
+      <p>Made with ❤️ by Pranith</p>
+    </footer>
+  </div>
+
+  <script>
+    const toggle = document.getElementById("darkToggle");
+    const darkIcon = document.getElementById("darkIcon");
+    const body = document.body;
+    const savedTheme = localStorage.getItem("theme");
+
+    if (savedTheme === "dark") {
+      body.setAttribute("data-theme", "dark");
+      darkIcon.src = "sun.png";
+    }
+
+    toggle.addEventListener("click", () => {
+      toggle.classList.add("spinning");
+
+      if (body.getAttribute("data-theme") === "dark") {
+        body.removeAttribute("data-theme");
+        localStorage.setItem("theme", "light");
+        darkIcon.src = "dark.png";
+      } else {
+        body.setAttribute("data-theme", "dark");
+        localStorage.setItem("theme", "dark");
+        darkIcon.src = "sun.png";
+      }
+
+      setTimeout(() => {
+        toggle.classList.remove("spinning");
+      }, 600);
+    });
+  </script>
+</body>
+</html>
